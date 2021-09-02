@@ -21,4 +21,26 @@ class UsersController extends Controller
         return view('welcome', compact('users'));
     }
 
+    public function user($id) {
+        $user = User::find($id);
+        return view('user', compact('user'));
+    }
+
+    public function edit($id) {
+        $user = User::find($id);
+        return view('edit_user', compact('user'));
+    }
+
+    public function updateUser(Request $request, $id) {
+        $user = User::find($id);
+        $user->update($request->all());
+        return redirect('/');
+    }
+
+    public function deleteUser($id) {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/');
+    }
+
 }
