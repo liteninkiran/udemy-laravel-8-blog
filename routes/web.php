@@ -16,9 +16,5 @@ use App\Http\Controllers\UsersController;
 
 Route::get('/', [UsersController::Class, 'home']);
 
-Route::get('/create_user_form', [UsersController::Class, 'userForm'])->name('create.user');
-Route::get('/single_user/{id}', [UsersController::Class, 'user'])->name('user');
-Route::get('/edit_user/{id}', [UsersController::Class, 'edit'])->name('edit');
-Route::post('/update_user/{id}', [UsersController::Class, 'updateUser'])->name('update');
-Route::get('/delete_user/{id}', [UsersController::Class, 'deleteUser'])->name('delete');
+Route::get('/create_user_form', [UsersController::Class, 'userForm']);
 Route::post('new/user', [UsersController::Class, 'store'])->name('user.store');

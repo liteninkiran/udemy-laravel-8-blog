@@ -1,7 +1,5 @@
 <x-layout>
 
-    <a class="btn btn-sm btn-success mb-2" href="{{ route('create.user') }}">Add User</a>
-
     <table class="table table-striped table-bordered">
 
         <thead>
@@ -20,9 +18,9 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>
-                        <a class="btn btn-sm btn-success" href="{{ route('user', $user->id) }}">View</a>
-                        <a class="btn btn-sm btn-primary" href="{{ route('edit', $user->id) }}">Edit</a>
-                        <a class="btn btn-sm btn-danger" href="{{ route('delete', $user->id) }}">Delete</a>
+                        <a class="btn btn-sm btn-success" href="">View</a>
+                        <a class="btn btn-sm btn-primary" href="">Edit</a>
+                        <a class="btn btn-sm btn-danger" href="">Delete</a>
                         </td>
                     </tr>
 
