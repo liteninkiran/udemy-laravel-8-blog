@@ -14,7 +14,9 @@ use App\Http\Controllers\UsersController;
 |
 */
 
-Route::get('/', [UsersController::Class, 'home']);
+Route::get('/', function () {
+    return view('welcome');
+});
 
 Route::get('/create_user_form', [UsersController::Class, 'userForm']);
 Route::post('new/user', [UsersController::Class, 'store'])->name('user.store');
