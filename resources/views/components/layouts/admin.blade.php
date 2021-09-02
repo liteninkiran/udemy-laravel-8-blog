@@ -52,8 +52,7 @@
                                 </div>
                             </div>
                             <div class="dropdown-list-content dropdown-list-message">
-                                <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar
-                                                                                        text-white"> <img alt="image" src="assets/img/users/user-1.png" class="rounded-circle">
+                                <a href="#" class="dropdown-item"> <span class="dropdown-item-avatar text-white"> <img alt="image" src="assets/img/users/user-1.png" class="rounded-circle">
                                     </span> <span class="dropdown-item-desc"> <span class="message-user">John
                                             Deo</span>
                                         <span class="time messege-text">Please check your mail !!</span>
@@ -113,21 +112,17 @@
                             </div>
                             <div class="dropdown-list-content dropdown-list-icons">
                                 <a href="#" class="dropdown-item dropdown-item-unread"> <span
-                                        class="dropdown-item-icon bg-primary text-white"> <i class="fas
-                                                                                                fa-code"></i>
+                                        class="dropdown-item-icon bg-primary text-white"> <i class="fas fa-code"></i>
                                     </span> <span class="dropdown-item-desc"> Template update is
                                         available now! <span class="time">2 Min
                                             Ago</span>
                                     </span>
-                                </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-icon bg-info text-white"> <i class="far
-                                                                                                fa-user"></i>
+                                </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-icon bg-info text-white"> <i class="far fa-user"></i>
                                     </span> <span class="dropdown-item-desc"> <b>You</b> and <b>Dedik
                                             Sugiharto</b> are now friends <span class="time">10 Hours
                                             Ago</span>
                                     </span>
-                                </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-icon bg-success text-white"> <i
-                                            class="fas
-                                                                                                fa-check"></i>
+                                </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-icon bg-success text-white"> <i class="fas fa-check"></i>
                                     </span> <span class="dropdown-item-desc"> <b>Kusnaedi</b> has
                                         moved task <b>Fix bug header</b> to <b>Done</b> <span class="time">12
                                             Hours
@@ -138,8 +133,7 @@
                                     </span> <span class="dropdown-item-desc"> Low disk space. Let's
                                         clean it! <span class="time">17 Hours Ago</span>
                                     </span>
-                                </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-icon bg-info text-white"> <i class="fas
-                                                                                                fa-bell"></i>
+                                </a> <a href="#" class="dropdown-item"> <span class="dropdown-item-icon bg-info text-white"> <i class="fas fa-bell"></i>
                                     </span> <span class="dropdown-item-desc"> Welcome to Otika
                                         template! <span class="time">Yesterday</span>
                                     </span>
@@ -155,8 +149,7 @@
                                 class="user-img-radious-style"> <span class="d-sm-none d-lg-inline-block"></span></a>
                         <div class="dropdown-menu dropdown-menu-right pullDown">
                             <div class="dropdown-title">Hello Sarah Smith</div>
-                            <a href="profile.html" class="dropdown-item has-icon"> <i class="far
-                                                                                fa-user"></i> Profile
+                            <a href="profile.html" class="dropdown-item has-icon"> <i class="far fa-user"></i> Profile
                             </a> <a href="timeline.html" class="dropdown-item has-icon"> <i class="fas fa-bolt"></i>
                                 Activities
                             </a> <a href="#" class="dropdown-item has-icon"> <i class="fas fa-cog"></i>
@@ -170,18 +163,28 @@
                     </li>
                 </ul>
             </nav>
+
+            {{-- Side Bar --}}
             <div class="main-sidebar sidebar-style-2">
+
                 <aside id="sidebar-wrapper">
+
+                    {{-- Logo --}}
                     <div class="sidebar-brand">
-                        <a href="index.html"> <img alt="image" src="assets/img/logo.png" class="header-logo" /> <span
-                                class="logo-name">Otika</span>
-                        </a>
+                        <a href="{{ route('admin.home') }}"><img alt="image" src="assets/img/logo.png" style="max-height: 75px;" class="mt-2"></a>
                     </div>
+
+                    {{-- Navigation Links --}}
                     <ul class="sidebar-menu">
-                        <li class="menu-header">Main</li>
+
+                        <li class="menu-header mt-3" style="text-align: center;">Admin Panel</li>
+
+                        {{-- Dashboard --}}
                         <li class="dropdown active">
-                            <a href="index.html" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
+                            <a href="{{ route('admin.home') }}" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
                         </li>
+
+                        {{-- Categories --}}
                         <li class="dropdown">
                             <a href="#" class="menu-toggle nav-link has-dropdown">
                                 <i data-feather="briefcase"></i><span>Category</span>
@@ -191,11 +194,24 @@
                                 <li><a class="nav-link" href="{{ route('admin.categories.create') }}">Create Category</a></li>
                             </ul>
                         </li>
-                        <li class="menu-header">UI Elements</li>
-                        <li class="menu-header">Media</li>
+
+                        {{-- Posts --}}
+                        <li class="dropdown">
+                            <a href="#" class="menu-toggle nav-link has-dropdown">
+                                <i data-feather="briefcase"></i><span>Post</span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="nav-link" href="{{ route('admin.posts.index') }}">Posts</a></li>
+                                <li><a class="nav-link" href="{{ route('admin.posts.create') }}">Create Post</a></li>
+                            </ul>
+                        </li>
+
                     </ul>
+
                 </aside>
+
             </div>
+
             <!-- Main Content -->
             <div class="main-content">
                 {{ $slot }}
