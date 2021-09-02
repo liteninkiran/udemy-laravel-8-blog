@@ -1,11 +1,32 @@
 @if (session()->has('message'))
-    <p class="alert alert-success">{{ session('message') }}</p>
+
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('message') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
 @elseif (session()->has('error'))
-    <p class="alert alert-danger">{{ session('error') }}</p>
+
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('error') }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+
 @elseif ($errors->any())
-    @foreach ($errors->all() as $error)
-        <p class="alert alert-danger">{{ $error }}</p>
-    @endforeach
+
+
+    <div class="alert alert-danger">
+        <ul class="mb-0">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+
 @else
 
 @endif

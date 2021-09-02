@@ -14,8 +14,8 @@
                         <div class="card-body">
 
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="{{ route('admin.categories.index') }}">All <span class="badge badge-white">{{ $categories->count() }}</span></a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('admin.categories.trashed') }}">Trash <span class="badge badge-primary">{{ $trashed->count() }}</span></a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('admin.categories.index') }}">All <span class="badge badge-white">{{ $categories->count() }}</span></a></li>
+                                <li class="nav-item"><a class="nav-link active" href="{{ route('admin.categories.trashed') }}">Trash <span class="badge badge-primary">{{ $trashed->count() }}</span></a></li>
                             </ul>
 
                         </div>
@@ -26,7 +26,7 @@
 
             </div>
 
-            @if( $categories->count() > 0)
+            @if( $trashed->count() > 0)
 
                 {{-- Messages --}}
                 <div class="row mt-4">
@@ -44,7 +44,7 @@
 
                             {{-- Header --}}
                             <div class="card-header">
-                                <h4>All Posts</h4>
+                                <h4>Trashed Posts</h4>
                             </div>
 
                             {{-- Data --}}
@@ -77,24 +77,20 @@
                                         </tr>
 
                                         {{-- Data --}}
-                                        @foreach ($categories as $category)
+                                        @foreach ($trashed as $trash)
 
                                             <tr>
 
                                                 {{-- Category Title --}}
-                                                <td>{{ $category->title }}
+                                                <td>{{ $trash->title }}
                                                     <div class="table-links">
-                                                        <a href="{{ route('admin.categories.edit', $category->id) }}">Edit</a><div class="bullet"></div>
-                                                        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            <input type="submit" value="Trash">
-                                                        </form>
+                                                        <a href="{{ route('admin.categories.undelete', $trash->id) }}">Restore</a><div class="bullet"></div>
+                                                        <a href="{{ route('admin.categories.remove', $trash->id) }}">Delete</a>
                                                     </div>
                                                 </td>
 
                                                 {{-- Created --}}
-                                                <td>{{ $category->created_at }}</td>
+                                                <td>{{ $trash->created_at }}</td>
 
                                             </tr>
 
@@ -108,7 +104,7 @@
                                 <div class="float-right">
                                     <nav>
                                         <ul class="pagination">
-                                            {{ $categories->links('pagination::bootstrap-4') }}
+                                            {{ $trashed->links('pagination::bootstrap-4') }}
                                         </ul>
                                     </nav>
                                 </div>

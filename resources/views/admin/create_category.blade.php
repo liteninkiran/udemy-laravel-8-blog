@@ -8,25 +8,33 @@
 
                     <div class="card">
 
+                        {{-- Header --}}
                         <div class="card-header">
                             <h4>Create Category</h4>
                         </div>
 
                         <form action="{{ route('admin.categories.store') }}" method="POST">
+
                             @csrf
+
                             <div class="card-body">
+
+                                {{-- Title --}}
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Title</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="text" class="form-control" name="title">
+                                        <input type="text" class="form-control" name="title" value="{{ old('title') }}">
                                     </div>
                                 </div>
+
+                                {{-- Submit Button --}}
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3"></label>
                                     <div class="col-sm-12 col-md-7">
                                         <button class="btn btn-primary">Create Category</button>
                                     </div>
                                 </div>
+
                             </div>
                         </form>
                     </div>

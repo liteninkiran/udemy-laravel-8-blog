@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,6 +23,9 @@ Route::prefix('admin')->group(function () {
         Route::get('/home', function () {
             return view('admin.home');
         })->name('home');
+        Route::get('/categories/trashed', [CategoryController::class, 'trashed'])->name('categories.trashed');
+        Route::get('/categories/{id}/undelete', [CategoryController::class, 'undelete'])->name('categories.undelete');
+        Route::get('/categories/{id}/remove', [CategoryController::class, 'remove'])->name('categories.remove');
         Route::resource('/categories', CategoryController::class);
     });
 });

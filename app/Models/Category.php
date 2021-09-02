@@ -11,4 +11,5 @@ class Category extends Model
     use HasFactory, softDeletes;
 
     protected $guarded = [];
+    protected $protected = ['deleted_at'];
 }

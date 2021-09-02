@@ -14,8 +14,22 @@ class CategoryController extends Controller
      */
     public function index()
     {
+        // $categories = Category::all();
+        $categories = Category::latest()->paginate(3);
+        $trashed = Category::onlyTrashed()->get();
+        return view('admin.categories', compact('categories', 'trashed'));
+    }
+
+    /**
+     * Display a listing of the soft deleted resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function trashed()
+    {
         $categories = Category::all();
-        return view('admin.categories', compact('categories'));
+        $trashed = Category::onlyTrashed()->paginate(3);
+        return view('admin.trashed', compact('categories', 'trashed'));
     }
 
     /**
@@ -100,6 +114,29 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $category = Category::find($id);
+        $category->delete();
+        session()->flash('message', 'Category ' . $category->title . ' trashed successfully');
+        return redirect('admin/categories');
     }
+
+    public function undelete($id)
+    {
+        $category = Category::withTrashed()->find($id);
+        $category->restore();
+        session()->flash('message', 'Category ' . $category->title . ' restored successfully');
+        return redirect()->route('admin.categories.trashed');
+    }
+
+    public function remove($id)
+    {
+        $category = Category::withTrashed()->find($id);
+        $title = $category->title;
+        $category->forceDelete();
+        session()->flash('message', 'Category ' . $title . ' deleted successfully');
+        return redirect()->route('admin.categories.trashed');
+    }
+
+
+
 }

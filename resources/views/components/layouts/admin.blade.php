@@ -187,8 +187,8 @@
                                 <i data-feather="briefcase"></i><span>Category</span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="{{ route('admin.categories.create') }}">Create Category</a></li>
                                 <li><a class="nav-link" href="{{ route('admin.categories.index') }}">Categories</a></li>
+                                <li><a class="nav-link" href="{{ route('admin.categories.create') }}">Create Category</a></li>
                             </ul>
                         </li>
                         <li class="menu-header">UI Elements</li>
