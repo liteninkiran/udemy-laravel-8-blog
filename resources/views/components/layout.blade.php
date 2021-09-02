@@ -13,7 +13,7 @@
 
         <div class="container">
 
-            <h1>{{ $title ?? 'User Management Application' }}</h1>
+            <h1>User Management Application</h1>
             {{ $slot }}
 
         </div>
