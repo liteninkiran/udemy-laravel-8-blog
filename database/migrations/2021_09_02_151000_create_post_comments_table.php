@@ -20,7 +20,6 @@ class CreatePostCommentsTable extends Migration
             $table->foreign('post_id')->references('id')->on('posts')->onDelete('cascade');
             $table->text('desc');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +23,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/home', function () {
             return view('admin.home');
         })->name('home');
+        Route::resource('/categories', CategoryController::class);
     });
 });
