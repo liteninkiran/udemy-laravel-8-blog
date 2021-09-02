@@ -15,4 +15,10 @@ class UsersController extends Controller
         User::create($request->all());
         return redirect('/');
     }
+
+    public function home() {
+        $users = User::all();
+        return view('welcome', compact('users'));
+    }
+
 }

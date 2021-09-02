@@ -11,11 +11,28 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td>David Jones</td>
-                <td>david.jones@home.com</td>
-                <td>Edit Delete</td>
-            </tr>
+            @if ($users->count() > 0)
+                @foreach ($users as $user)
+
+                    <tr>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>
+                        <a class="btn btn-sm btn-success" href="">View</a>
+                        <a class="btn btn-sm btn-primary" href="">Edit</a>
+                        <a class="btn btn-sm btn-danger" href="">Delete</a>
+                        </td>
+                    </tr>
+
+                @endforeach
+
+            @else
+
+                <h3>No Users Found</h3>
+
+            @endif
+
+
         </tbody>
 
     </table>
