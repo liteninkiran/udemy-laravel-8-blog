@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $categories = Category::all();
+        return view('admin.categories', compact('categories'));
     }
 
     /**
@@ -41,8 +42,8 @@ class CategoryController extends Controller
 
         if ($validated) {
             Category::create($request->all());
-            \session()->flash('message', 'Category created successfully');
-            return back();
+            session()->flash('message', 'Category created successfully');
+            return redirect('admin/categories');
         }
     }
 
@@ -65,7 +66,8 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        //
+        $category = Category::find($id);
+        return view('admin.edit_category', compact('category'));
     }
 
     /**
@@ -77,7 +79,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $category = Category::find($id);
+
+        $validated = $request->validate([
+            'title' => 'required|unique:categories|max:255',
+        ]);
+
+        if ($validated) {
+            $category->update($request->all());
+            session()->flash('message', 'Category ' . $category->title . ' updated successfully');
+            return redirect('admin/categories');
+        }
     }
 
     /**

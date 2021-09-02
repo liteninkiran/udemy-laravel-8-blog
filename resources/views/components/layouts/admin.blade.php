@@ -183,11 +183,12 @@
                             <a href="index.html" class="nav-link"><i data-feather="monitor"></i><span>Dashboard</span></a>
                         </li>
                         <li class="dropdown">
-                            <a href="#" class="menu-toggle nav-link has-dropdown"><i
-                                    data-feather="briefcase"></i><span>Widgets</span></a>
+                            <a href="#" class="menu-toggle nav-link has-dropdown">
+                                <i data-feather="briefcase"></i><span>Category</span>
+                            </a>
                             <ul class="dropdown-menu">
-                                <li><a class="nav-link" href="widget-chart.html">Chart Widgets</a></li>
-                                <li><a class="nav-link" href="widget-data.html">Data Widgets</a></li>
+                                <li><a class="nav-link" href="{{ route('admin.categories.create') }}">Create Category</a></li>
+                                <li><a class="nav-link" href="{{ route('admin.categories.index') }}">Categories</a></li>
                             </ul>
                         </li>
                         <li class="menu-header">UI Elements</li>
