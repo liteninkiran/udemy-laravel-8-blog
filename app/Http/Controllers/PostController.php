@@ -22,6 +22,18 @@ class PostController extends Controller
     }
 
     /**
+     * Display a listing of the soft deleted resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function trashed()
+    {
+        $posts = Post::all();
+        $trashed = Post::onlyTrashed()->paginate(10);
+        return view('admin.trashed_posts', compact('posts', 'trashed'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -129,7 +141,10 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::find($id);
+        $post->delete();
+        session()->flash('message', 'Post ' . $post->title . ' trashed successfully');
+        return redirect('admin/posts/index');
     }
 
     public function uploadImage($image, $path) {
@@ -139,5 +154,20 @@ class PostController extends Controller
         $image->move($path, $newName);
 
         return $newName;
+    }
+
+    public function undelete($id) {
+        $post = Post::onlyTrashed()->find($id);
+        $post->restore();
+        session()->flash('message', 'Post ' . $post->title . ' restored successfully');
+        return redirect()->route('admin.posts.trashed');
+    }
+
+    public function remove($id) {
+        $post = Post::onlyTrashed()->find($id);
+        $title = $post->title;
+        $post->forceDelete();
+        session()->flash('message', 'Post ' . $title . ' deleted successfully');
+        return redirect()->route('admin.posts.trashed');
     }
 }

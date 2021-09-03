@@ -11,6 +11,7 @@ class Post extends Model
     use HasFactory, softDeletes;
 
     protected $guarded = [];
+    protected $dates = ['deleted_at'];
 
     public static $validationRules = [
         'title' => 'required|max:255',

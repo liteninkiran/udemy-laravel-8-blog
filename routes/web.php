@@ -39,7 +39,9 @@ Route::prefix('admin')->group(function () {
         Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store');
         Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
         Route::post('/posts/{id}/update', [PostController::class, 'update'])->name('posts.update');
-        Route::post('/posts/{id}/destroy', [PostController::class, 'destroy'])->name('posts.destroy');
+        Route::get('/posts/{id}/destroy', [PostController::class, 'destroy'])->name('posts.destroy');
         Route::get('/posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
+        Route::get('/posts/{id}/undelete', [PostController::class, 'undelete'])->name('posts.undelete');
+        Route::get('/posts/{id}/remove', [PostController::class, 'remove'])->name('posts.remove');
     });
 });

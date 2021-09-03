@@ -28,7 +28,7 @@ class CategoryController extends Controller
     {
         $categories = Category::all();
         $trashed = Category::onlyTrashed()->paginate(3);
-        return view('admin.trashed', compact('categories', 'trashed'));
+        return view('admin.trashed_categories', compact('categories', 'trashed'));
     }
 
     /**
@@ -121,7 +121,7 @@ class CategoryController extends Controller
 
     public function undelete($id)
     {
-        $category = Category::withTrashed()->find($id);
+        $category = Category::onlyTrashed()->find($id);
         $category->restore();
         session()->flash('message', 'Category ' . $category->title . ' restored successfully');
         return redirect()->route('admin.categories.trashed');
@@ -129,7 +129,7 @@ class CategoryController extends Controller
 
     public function remove($id)
     {
-        $category = Category::withTrashed()->find($id);
+        $category = Category::onlyTrashed()->find($id);
         $title = $category->title;
         $category->forceDelete();
         session()->flash('message', 'Category ' . $title . ' deleted successfully');
