@@ -26,7 +26,7 @@
 
             </div>
 
-            @if( $posts->count() > 0)
+            @if ($posts->count() > 0)
 
                 {{-- Messages --}}
                 <div class="row mt-4">

@@ -14,7 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::latest()->paginate(3);
+        $categories = Category::latest()->paginate(10);
         $trashed = Category::onlyTrashed()->get();
         return view('admin.categories', compact('categories', 'trashed'));
     }
@@ -27,7 +27,7 @@ class CategoryController extends Controller
     public function trashed()
     {
         $categories = Category::all();
-        $trashed = Category::onlyTrashed()->paginate(3);
+        $trashed = Category::onlyTrashed()->paginate(10);
         return view('admin.trashed_categories', compact('categories', 'trashed'));
     }
 
