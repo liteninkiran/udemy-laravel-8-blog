@@ -55,7 +55,7 @@ class PostController extends Controller
             $post->image = $imageName;
             $post->save();
             session()->flash('message', 'Post created successfully');
-            return redirect('admin/posts');
+            return redirect('admin/posts/index');
         }
     }
 
@@ -78,7 +78,9 @@ class PostController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categories = Category::all();
+        $post = Post::find($id);
+        return view('admin.edit_post', compact('post', 'categories'));
     }
 
     /**
@@ -90,7 +92,33 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $post = Post::find($id);
+
+        $imageName = $post->image;
+
+        if ($request->validate(Post::$validationRules, Post::$messages)) {
+
+            // $post->update($request->all());
+
+            // Upload image
+            if ($request->has('image')) {
+                $image = $request->image;
+                $path = 'storage/posts/';
+                $imageName = $this->uploadImage($image, $path);
+            }
+
+            $post->title = $request->title;
+            $post->desc = $request->desc;
+            $post->user_id = $request->user_id;
+            $post->category_id = $request->category_id;
+            $post->image = $imageName;
+
+            $post->save();
+
+            session()->flash('message', 'Post updated successfully');
+
+            return redirect('admin/posts/index');
+        }
     }
 
     /**

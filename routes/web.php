@@ -38,8 +38,8 @@ Route::prefix('admin')->group(function () {
         Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
         Route::post('/posts/store', [PostController::class, 'store'])->name('posts.store');
         Route::get('/posts/{id}/edit', [PostController::class, 'edit'])->name('posts.edit');
-        Route::get('/posts/{id}/update', [PostController::class, 'update'])->name('posts.update');
-        Route::get('/posts/{id}/destroy', [PostController::class, 'destroy'])->name('posts.destroy');
+        Route::post('/posts/{id}/update', [PostController::class, 'update'])->name('posts.update');
+        Route::post('/posts/{id}/destroy', [PostController::class, 'destroy'])->name('posts.destroy');
         Route::get('/posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
     });
 });
