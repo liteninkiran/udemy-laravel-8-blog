@@ -25,4 +25,8 @@ class Post extends Model
         'desc.required' => 'Please enter some Content', 
         'user_id.required' => 'A valid user is required', 
     );
+
+    public function category() {
+        return $this->belongsTo('App\Models\Category');
+    }
 }

@@ -14,8 +14,8 @@
                         <div class="card-body">
 
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="{{ route('admin.categories.index') }}">All <span class="badge badge-white">{{ $categories->count() }}</span></a></li>
-                                <li class="nav-item"><a class="nav-link" href="{{ route('admin.categories.trashed') }}">Trash <span class="badge badge-primary">{{ $trashed->count() }}</span></a></li>
+                                <li class="nav-item"><a class="nav-link active" href="{{ route('admin.posts.index') }}">All <span class="badge badge-white">{{ $posts->count() }}</span></a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('admin.posts.trashed') }}">Trash <span class="badge badge-primary">{{ $trashed->count() }}</span></a></li>
                             </ul>
 
                         </div>
@@ -26,7 +26,7 @@
 
             </div>
 
-            @if( $categories->count() > 0)
+            @if( $posts->count() > 0)
 
                 {{-- Messages --}}
                 <div class="row mt-4">
@@ -73,28 +73,52 @@
                                         {{-- Header Row --}}
                                         <tr>
                                             <th>Title</th>
+                                            <th>Description</th>
+                                            {{-- <th>Image</th> --}}
+                                            <th>Category</th>
                                             <th>Created At</th>
                                         </tr>
 
                                         {{-- Data --}}
-                                        @foreach ($categories as $category)
+                                        @foreach ($posts as $post)
 
                                             <tr>
 
-                                                {{-- Category Title --}}
-                                                <td>{{ $category->title }}
+                                                {{-- Post Title --}}
+                                                <td>{{ $post->title }}
                                                     <div class="table-links">
-                                                        <a href="{{ route('admin.categories.edit', $category->id) }}">Edit</a><div class="bullet"></div>
-                                                        <form action="{{ route('admin.categories.destroy', $category->id) }}" method="POST">
-                                                            @method('DELETE')
-                                                            @csrf
-                                                            <input type="submit" value="Trash">
-                                                        </form>
+                                                        <a href="{{ route('admin.posts.edit', $post->id) }}">Edit</a><div class="bullet"></div>
+                                                        <a href="{{ route('admin.posts.destroy', $post->id) }}">Trash</a>
+                                                    </div>
+                                                </td>
+
+                                                {{-- Post Description --}}
+                                                <td>{!! $post->desc !!}
+                                                    <div class="table-links">
+                                                        <a href="{{ route('admin.posts.edit', $post->id) }}">Edit</a><div class="bullet"></div>
+                                                        <a href="{{ route('admin.posts.destroy', $post->id) }}">Trash</a>
+                                                    </div>
+                                                </td>
+
+                                                {{-- Image --}}
+{{-- 
+                                                <td>{{ $post->image }}
+                                                    <div class="table-links">
+                                                        <a href="{{ route('admin.posts.edit', $post->id) }}">Edit</a><div class="bullet"></div>
+                                                        <a href="{{ route('admin.posts.destroy', $post->id) }}">Trash</a>
+                                                    </div>
+                                                </td>
+ --}}
+                                                {{-- Category --}}
+                                                <td>{{ $post->category->title }}
+                                                    <div class="table-links">
+                                                        <a href="{{ route('admin.posts.edit', $post->id) }}">Edit</a><div class="bullet"></div>
+                                                        <a href="{{ route('admin.posts.destroy', $post->id) }}">Trash</a>
                                                     </div>
                                                 </td>
 
                                                 {{-- Created --}}
-                                                <td>{{ $category->created_at }}</td>
+                                                <td>{{ $post->created_at }}</td>
 
                                             </tr>
 
@@ -108,7 +132,7 @@
                                 <div class="float-right">
                                     <nav>
                                         <ul class="pagination">
-                                            {{ $categories->links('pagination::bootstrap-4') }}
+                                            {{ $posts->links('pagination::bootstrap-4') }}
                                         </ul>
                                     </nav>
                                 </div>

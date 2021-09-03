@@ -12,4 +12,8 @@ class Category extends Model
 
     protected $guarded = [];
     protected $protected = ['deleted_at'];
+
+    public function posts() {
+        return $this->hasMany('App\Models\Post');
+    }
 }
