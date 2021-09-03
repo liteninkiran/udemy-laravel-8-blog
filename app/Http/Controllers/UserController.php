@@ -71,8 +71,11 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-    }
+        $user = User::find($id);
+        $user->update($request->all());
+        session()->flash('message', 'Profile updated successfully');
+        return back();
+}
 
     /**
      * Remove the specified resource from storage.

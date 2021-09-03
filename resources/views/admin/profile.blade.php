@@ -1,8 +1,19 @@
 <x-layouts.admin>
 
     <section class="section">
+
         <div class="section-body">
+
+            {{-- Messages --}}
+            <div class="row mt-4">
+                <div class="col-12">
+                    @include('includes.messages')
+                </div>
+            </div>
+
+            {{-- Profile --}}
             <div class="row mt-sm-4">
+
                 <div class="col-12 col-md-12 col-lg-4">
 
                     {{-- Name and Email --}}
@@ -99,7 +110,10 @@
 
                                 {{-- Settings --}}
                                 <div class="tab-pane fade" id="settings" role="tabpanel" aria-labelledby="profile-tab2">
-                                    <form method="post" class="needs-validation">
+
+                                    <form method="post" action="{{ route('admin.users.update', auth()->id()) }}">
+
+                                        @csrf
 
                                         {{-- Header --}}
                                         <div class="card-header">
@@ -119,23 +133,29 @@
                                                     </div>
                                                 </div>
 
-                                            </div>
-
-                                            <div class="row">
-
                                                 {{-- Email --}}
-                                                <div class="form-group col-md-7 col-12">
+                                                <div class="form-group col-md-6 col-12">
                                                     <label>Email</label>
-                                                    <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}">
+                                                    <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}" readonly>
                                                     <div class="invalid-feedback">
                                                         Please fill in the email
                                                     </div>
                                                 </div>
 
+                                            </div>
+
+                                            <div class="row">
+
                                                 {{-- Phone --}}
-                                                <div class="form-group col-md-5 col-12">
+                                                <div class="form-group col-md-6 col-12">
                                                     <label>Phone</label>
                                                     <input type="tel" name="phone" class="form-control" value="{{ auth()->user()->phone }}">
+                                                </div>
+
+                                                {{-- Last Updated --}}
+                                                <div class="form-group col-md-6 col-12">
+                                                    <label>Last Updated</label>
+                                                    <input type="text" class="form-control" value="{{ auth()->user()->updated_at->diffForHumans() }}" readonly>
                                                 </div>
 
                                             </div>
