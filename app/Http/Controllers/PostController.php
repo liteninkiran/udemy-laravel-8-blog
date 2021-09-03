@@ -39,7 +39,9 @@ class PostController extends Controller
     public function store(Request $request)
     {
         if ($request->validate(Post::$validationRules, Post::$messages)) {
-            Post::create($request->all());
+            $post = Post::create($request->all());
+            $post->image = "image.png";
+            $post->save();
             session()->flash('message', 'Post created successfully');
             return redirect('admin/posts');
         }
