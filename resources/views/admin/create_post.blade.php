@@ -73,7 +73,7 @@
                                 <div class="form-group row mb-4">
                                     <label class="col-form-label text-md-right col-12 col-md-3 col-lg-3">Content</label>
                                     <div class="col-sm-12 col-md-7">
-                                        <textarea name="desc" class="summernote-simple" style="width: 100%" value="{{ old('desc') }}"></textarea>
+                                        <textarea name="desc" class="summernote-simple" style="width: 100%" value="{{ old('desc') }}" id="desc"></textarea>
                                     </div>
                                 </div>
 

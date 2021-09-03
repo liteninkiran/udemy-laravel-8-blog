@@ -15,6 +15,7 @@
     <!-- Custom style CSS -->
     <link rel="stylesheet" href="{{ asset('admin/assets/css/custom.css') }}">
     <link rel='shortcut icon' type='image/x-icon' href="{{ asset('admin/assets/img/favicon.ico') }}" />
+    <script src="https://cdn.ckeditor.com/4.16.2/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -235,6 +236,8 @@
     <script src="{{ asset('admin/assets/js/scripts.js') }}"></script>
     <!-- Custom JS File -->
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
+    <script>CKEDITOR.replace( 'desc' );</script>
+
 </body>
 
 

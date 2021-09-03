@@ -16,11 +16,13 @@ class Post extends Model
         'title' => 'required|max:255',
         'category_id' => 'required',
         'desc' => 'required',
+        'user_id' => 'required',
     ];
 
     public static $messages = array(
         'title.required' => 'Please enter a Title',
         'category_id.required' => 'Please select a Category', 
         'desc.required' => 'Please enter some Content', 
+        'user_id.required' => 'A valid user is required', 
     );
 }
