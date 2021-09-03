@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Category;
+use Str;
 
 class PostController extends Controller
 {
@@ -39,8 +40,18 @@ class PostController extends Controller
     public function store(Request $request)
     {
         if ($request->validate(Post::$validationRules, Post::$messages)) {
+
+            $imageName = null;
+
+            // Upload image
+            if ($request->has('image')) {
+                $image = $request->image;
+                $path = 'storage/posts/';
+                $imageName = $this->uploadImage($image, $path);
+            }
+
             $post = Post::create($request->all());
-            $post->image = "image.png";
+            $post->image = $imageName;
             $post->save();
             session()->flash('message', 'Post created successfully');
             return redirect('admin/posts');
@@ -90,5 +101,14 @@ class PostController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function uploadImage($image, $path) {
+        $imageName = $image->getClientOriginalName();
+        $string = Str::random();
+        $newName = $string . '_' . time() . '_' . $imageName;
+        $image->move($path, $newName);
+
+        return $newName;
     }
 }

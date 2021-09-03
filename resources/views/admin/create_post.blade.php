@@ -17,7 +17,7 @@
                             <h4>Write Your Post</h4>
                         </div>
 
-                        <form action="{{ route('admin.posts.store') }}" method="POST">
+                        <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
 
                             @csrf
 
