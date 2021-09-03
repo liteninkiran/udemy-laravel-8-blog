@@ -171,7 +171,7 @@
 
                     {{-- Logo --}}
                     <div class="sidebar-brand">
-                        <a href="{{ route('admin.home') }}"><img alt="image" src="assets/img/logo.png" style="max-height: 75px;" class="mt-2"></a>
+                        <a href="{{ route('admin.home') }}"><img alt="image" src="{{ URL::asset('admin/assets/img/logo.png') }}" style="max-height: 75px;" class="mt-2"></a>
                     </div>
 
                     {{-- Navigation Links --}}
