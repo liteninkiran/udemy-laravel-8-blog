@@ -238,6 +238,24 @@
     <script src="{{ asset('admin/assets/js/custom.js') }}"></script>
     <script>CKEDITOR.replace( 'desc' );</script>
 
+    <script>
+        const imgInput = document.getElementById('image-upload');
+        const previewDiv = document.getElementById('image-preview');
+        src = '';
+
+        imgInput.onchange = evt => {
+            const [file] = imgInput.files;
+            if (file) {
+                src = URL.createObjectURL(file);
+            }
+
+            previewDiv.style.backgroundImage = `url('${src}')`;
+            previewDiv.style.backgroundRepeat = 'no-repeat';
+            previewDiv.style.backgroundSize = 'Auto 100%';
+        }
+
+    </script>
+
 </body>
 
 
