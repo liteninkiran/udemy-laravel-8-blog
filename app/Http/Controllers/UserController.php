@@ -82,6 +82,20 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        session()->flash('message', 'User ' . $user->name . ' trashed successfully');
+        return redirect('admin/users/index');
     }
+
+    public function promote($id, $promote)
+    {
+        $user = User::find($id);
+        $user->is_admin = $promote;
+        $user->save();
+        $action = $promote === '1' ? ' promoted ' : ' demoted ';
+        session()->flash('message', 'User ' . $user->name . $action . ' successfully');
+        return redirect('admin/users/index');
+    }
+
 }

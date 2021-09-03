@@ -26,14 +26,14 @@
 
             </div>
 
-            @if( $trashed->count() > 0)
-
-                {{-- Messages --}}
-                <div class="row mt-4">
-                    <div class="col-12">
-                        @include('includes.messages')
-                    </div>
+            {{-- Messages --}}
+            <div class="row mt-4">
+                <div class="col-12">
+                    @include('includes.messages')
                 </div>
+            </div>
+
+            @if( $trashed->count() > 0)
 
                 {{-- Data --}}
                 <div class="row">

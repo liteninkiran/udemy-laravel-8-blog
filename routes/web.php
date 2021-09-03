@@ -47,14 +47,14 @@ Route::prefix('admin')->group(function () {
 
         // User routes
         Route::get('/users/index', [UserController::class, 'index'])->name('users.index');
-        Route::get('/users/create', [PostController::class, 'create'])->name('users.create');
-        Route::post('/users/store', [PostController::class, 'store'])->name('users.store');
-        Route::get('/users/{id}/edit', [PostController::class, 'edit'])->name('users.edit');
-        Route::post('/users/{id}/update', [PostController::class, 'update'])->name('users.update');
-        Route::get('/users/{id}/destroy', [PostController::class, 'destroy'])->name('users.destroy');
-        Route::get('/users/trashed', [PostController::class, 'trashed'])->name('users.trashed');
-        Route::get('/users/{id}/undelete', [PostController::class, 'undelete'])->name('users.undelete');
-        Route::get('/users/{id}/remove', [PostController::class, 'remove'])->name('users.remove');
+        Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/users/store', [UserController::class, 'store'])->name('users.store');
+        Route::get('/users/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+        Route::post('/users/{id}/update', [UserController::class, 'update'])->name('users.update');
+        Route::get('/users/{id}/destroy', [UserController::class, 'destroy'])->name('users.destroy');
+        Route::get('/users/trashed', [UserController::class, 'trashed'])->name('users.trashed');
+        Route::get('/users/{id}/promote/{promote}', [UserController::class, 'promote'])->name('users.promote');
+        Route::get('/users/{id}/remove', [UserController::class, 'remove'])->name('users.remove');
     });
 });
 

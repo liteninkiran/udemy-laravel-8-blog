@@ -210,7 +210,7 @@
                         {{-- Users --}}
                         <li class="dropdown">
                             <a href="#" class="menu-toggle nav-link has-dropdown">
-                                <i data-feather="user"></i><span>Users</span>
+                                <i data-feather="users"></i><span>Users</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('admin.users.index') }}">Users</a></li>

@@ -26,14 +26,14 @@
 
             </div>
 
-            @if ($users->count() > 0)
-
-                {{-- Messages --}}
-                <div class="row mt-4">
-                    <div class="col-12">
-                        @include('includes.messages')
-                    </div>
+            {{-- Messages --}}
+            <div class="row mt-4">
+                <div class="col-12">
+                    @include('includes.messages')
                 </div>
+            </div>
+
+            @if ($users->count() > 0)
 
                 {{-- Data --}}
                 <div class="row">
@@ -84,18 +84,44 @@
 
                                                 {{-- Name --}}
                                                 <td>{{ $user->name }}
+
                                                     <div class="table-links">
-                                                        <a href="{{ route('admin.users.edit', $user->id) }}">Edit</a><div class="bullet"></div>
-                                                        <a href="{{ route('admin.users.destroy', $user->id) }}">Trash</a>
+
+                                                        {{-- Check if user is admin --}}
+                                                        @if (auth()->check() && !auth()->user()->is_admin)
+                                                            <a href="{{ route('admin.users.promote', [$user->id, 1]) }}">Promote</a><div class="bullet"></div>
+                                                            <a href="{{ route('admin.users.destroy', $user->id) }}">Trash</a>
+                                                        @elseif (auth()->check() && auth()->user()->is_admin)
+                                                            <a href="{{ route('admin.users.promote', [$user->id, 0]) }}">Demote</a><div class="bullet"></div>
+                                                            <a href="{{ route('admin.users.destroy', $user->id) }}">Trash</a>
+                                                        @else
+                                                            <p>You must be logged in to manage users</p>
+                                                        @endif
+
+
                                                     </div>
+
                                                 </td>
 
                                                 {{-- Email --}}
                                                 <td>{{ $user->email }}
+
                                                     <div class="table-links">
-                                                        <a href="{{ route('admin.users.edit', $user->id) }}">Edit</a><div class="bullet"></div>
+
+                                                        {{-- Check if user is admin --}}
+                                                        @if (auth()->check() && !auth()->user()->is_admin)
+                                                            <a href="{{ route('admin.users.promote', [$user->id, 1]) }}">Promote</a>
+                                                        @elseif (auth()->check() && auth()->user()->is_admin)
+                                                            <a href="{{ route('admin.users.promote', [$user->id, 0]) }}">Demote</a>
+                                                        @else
+                                                            <p>You must be logged in to manage users</p>
+                                                        @endif
+
+                                                        <div class="bullet"></div>
                                                         <a href="{{ route('admin.users.destroy', $user->id) }}">Trash</a>
+
                                                     </div>
+
                                                 </td>
 
                                                 {{-- Created --}}
