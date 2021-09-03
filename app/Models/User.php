@@ -42,4 +42,34 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getGravatarAttribute() {
+        $email = $this->attributes['email'];
+        $valid = $this->validate_gravatar($email);
+        $hash = md5(strtolower(trim($email)));
+        $gravatar = "http://www.gravatar.com/avatar/$hash";
+
+        if ($valid) {
+            return $gravatar;
+        } else {
+            return asset('storage/profile/user.png');
+        }
+        
+    }
+
+    function validate_gravatar($email) {
+        // Craft a potential url and test its headers
+        $hash = md5(strtolower(trim($email)));
+    
+        $uri = 'http://www.gravatar.com/avatar/' . $hash . '?d=404';
+        $headers = @get_headers($uri);
+    
+        if (!preg_match("|200|", $headers[0])) {
+            $has_valid_avatar = false;
+        } else {
+            $has_valid_avatar = true;
+        }
+    
+        return $has_valid_avatar;
+    }
 }

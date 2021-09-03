@@ -98,4 +98,11 @@ class UserController extends Controller
         return redirect('admin/users/index');
     }
 
+    // Show user's profile
+    public function profile()
+    {
+        // $user = User::find($id);
+        return view('admin.profile'); //, compact('user'));
+    }
+
 }

@@ -55,6 +55,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/users/trashed', [UserController::class, 'trashed'])->name('users.trashed');
         Route::get('/users/{id}/promote/{promote}', [UserController::class, 'promote'])->name('users.promote');
         Route::get('/users/{id}/remove', [UserController::class, 'remove'])->name('users.remove');
+        Route::get('/users/profile', [UserController::class, 'profile'])->name('users.profile');
     });
 });
 
