@@ -188,7 +188,7 @@
                         {{-- Categories --}}
                         <li class="dropdown">
                             <a href="#" class="menu-toggle nav-link has-dropdown">
-                                <i data-feather="briefcase"></i><span>Category</span>
+                                <i data-feather="list"></i><span>Category</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('admin.categories.index') }}">Categories</a></li>
@@ -199,7 +199,7 @@
                         {{-- Posts --}}
                         <li class="dropdown">
                             <a href="#" class="menu-toggle nav-link has-dropdown">
-                                <i data-feather="briefcase"></i><span>Post</span>
+                                <i data-feather="file-text"></i><span>Post</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a class="nav-link" href="{{ route('admin.posts.index') }}">Posts</a></li>
