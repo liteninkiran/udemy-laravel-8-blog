@@ -91,7 +91,7 @@
                                 {{-- User --}}
                                 <div class="form-group row mb-4">
                                     <div class="col-sm-12 col-md-7">
-                                        <input type="number" name="user_id" value="1" hidden>
+                                        <input type="number" name="user_id" value="{{ $post->user_id }}" hidden>
                                     </div>
                                 </div>
 
