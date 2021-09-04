@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,9 +25,7 @@ Route::prefix('admin')->group(function () {
     Route::name('admin.')->group(function () {
 
         // Admin home page
-        Route::get('/home', function () {
-            return view('admin.home');
-        })->name('home');
+        Route::get('/home', [AdminController::class, 'home'])->name('home');
 
         // Category routes
         Route::get('/categories/trashed', [CategoryController::class, 'trashed'])->name('categories.trashed');
@@ -56,6 +55,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/users/{id}/promote/{promote}', [UserController::class, 'promote'])->name('users.promote');
         Route::get('/users/{id}/remove', [UserController::class, 'remove'])->name('users.remove');
         Route::get('/users/profile', [UserController::class, 'profile'])->name('users.profile');
+        Route::get('/users/{id}/user_profile', [UserController::class, 'user_profile'])->name('users.user_profile');
     });
 });
 

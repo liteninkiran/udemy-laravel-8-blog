@@ -44,7 +44,7 @@
 
                             {{-- Header --}}
                             <div class="card-header">
-                                <h4>All Posts</h4>
+                                <h4>All Categories</h4>
                             </div>
 
                             {{-- Data --}}

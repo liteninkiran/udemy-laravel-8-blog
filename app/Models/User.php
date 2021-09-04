@@ -45,17 +45,21 @@ class User extends Authenticatable
     ];
 
     public function getGravatarAttribute() {
-        $email = $this->attributes['email'];
-        $valid = $this->validate_gravatar($email);
-        $hash = md5(strtolower(trim($email)));
-        $gravatar = "http://www.gravatar.com/avatar/$hash";
 
-        if ($valid) {
-            return $gravatar;
-        } else {
-            return asset('storage/profile/user.png');
+        $imgPath = asset('storage/profile/user.png');
+
+        if (auth()->check()) {
+
+            $email = $this->attributes['email'];
+            $valid = $this->validate_gravatar($email);
+
+            if ($valid) {
+                $hash = md5(strtolower(trim($email)));
+                $imgPath = "http://www.gravatar.com/avatar/$hash";
+            }
         }
-        
+
+        return $imgPath;
     }
 
     function validate_gravatar($email) {
@@ -72,5 +76,9 @@ class User extends Authenticatable
         }
     
         return $has_valid_avatar;
+    }
+
+    public function posts() {
+        return $this->hasMany('App\Models\Post');
     }
 }

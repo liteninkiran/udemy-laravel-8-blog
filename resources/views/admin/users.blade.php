@@ -75,6 +75,7 @@
                                             <th>Name</th>
                                             <th>Email</th>
                                             <th>Created At</th>
+                                            <th>Action</th>
                                         </tr>
 
                                         {{-- Data --}}
@@ -110,15 +111,14 @@
 
                                                         {{-- Check if user is admin --}}
                                                         @if (auth()->check() && !auth()->user()->is_admin)
-                                                            <a href="{{ route('admin.users.promote', [$user->id, 1]) }}">Promote</a>
+                                                            <a href="{{ route('admin.users.promote', [$user->id, 1]) }}">Promote</a><div class="bullet"></div>
+                                                            <a href="{{ route('admin.users.destroy', $user->id) }}">Trash</a>
                                                         @elseif (auth()->check() && auth()->user()->is_admin)
-                                                            <a href="{{ route('admin.users.promote', [$user->id, 0]) }}">Demote</a>
+                                                            <a href="{{ route('admin.users.promote', [$user->id, 0]) }}">Demote</a><div class="bullet"></div>
+                                                            <a href="{{ route('admin.users.destroy', $user->id) }}">Trash</a>
                                                         @else
                                                             <p>You must be logged in to manage users</p>
                                                         @endif
-
-                                                        <div class="bullet"></div>
-                                                        <a href="{{ route('admin.users.destroy', $user->id) }}">Trash</a>
 
                                                     </div>
 
@@ -126,6 +126,9 @@
 
                                                 {{-- Created --}}
                                                 <td>{{ $user->created_at }}</td>
+
+                                                {{-- Action --}}
+                                                <td><a href="{{ route('admin.users.user_profile', $user->id) }}"><i data-feather="eye"></i></a></td>
 
                                             </tr>
 
