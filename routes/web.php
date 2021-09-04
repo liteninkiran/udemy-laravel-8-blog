@@ -43,6 +43,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/posts/trashed', [PostController::class, 'trashed'])->name('posts.trashed');
         Route::get('/posts/{id}/undelete', [PostController::class, 'undelete'])->name('posts.undelete');
         Route::get('/posts/{id}/remove', [PostController::class, 'remove'])->name('posts.remove');
+        Route::post('/posts/search', [PostController::class, 'search'])->name('posts.search');
 
         // User routes
         Route::get('/users/index', [UserController::class, 'index'])->name('users.index');

@@ -170,4 +170,12 @@ class PostController extends Controller
         session()->flash('message', 'Post ' . $title . ' deleted successfully');
         return redirect()->route('admin.posts.trashed');
     }
+
+    public function search(Request $request) {
+        $search = $request->search;
+        $posts = Post::query()->where('title', 'LIKE', "%{$search}%")->paginate(10);
+        $trashed = Post::onlyTrashed()->where('title', 'LIKE', "%{$search}%")->paginate(10);
+
+        return view('admin.searches', compact('posts', 'trashed'));
+    }
 }

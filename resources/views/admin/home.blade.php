@@ -114,8 +114,7 @@
                                     <img src="{{ $post->user->getGravatarAttribute() }}" class="user-img mr-2" alt="">
                                     <div class="media-body ml-3">
                                         <div class="badge badge-pill badge-success mb-1 float-right">{{ $post->category->title }}</div>
-                                        <a href="javascript:void(0)">{{ $post->title }}</a>
-                                        <p class="my-1">{!! Str::limit($post->desc, 100) !!}</p>
+                                        <a href="{{ route('admin.posts.edit', $post->id) }}">{{ $post->title }}</a>
                                         <small class="text-muted">Created by <span class="font-weight-bold font-13">{{ $post->user->name }}</span> - {{ $post->created_at->diffForHumans() }}</small>
                                     </div>
                                 </div>
@@ -126,102 +125,70 @@
                             <p>No posts found</p>
                         @endif
 
-
-
                     </div>
 
-                    <a href="javascript:void(0)" class="card-footer card-link text-center small ">View All</a>
+                    <a href="{{ route('admin.posts.index') }}" class="card-footer card-link text-center small ">View All</a>
 
                 </div>
 
             </div>
 
+            {{-- Recent Categories --}}
             <div class="col-md-6 col-lg-12 col-xl-6">
                 <div class="card">
+
+                    {{-- Header --}}
                     <div class="card-header">
-                        <h4>Projects Payments</h4>
+                        <h4>Recent Categories</h4>
                     </div>
+
+                    {{-- Data --}}
                     <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table table-hover mb-0">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Client Name</th>
-                                        <th>Date</th>
-                                        <th>Payment Method</th>
-                                        <th>Amount</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>John Doe </td>
-                                        <td>11-08-2018</td>
-                                        <td>NEFT</td>
-                                        <td>$258</td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>Cara Stevens
-                                        </td>
-                                        <td>15-07-2018</td>
-                                        <td>PayPal</td>
-                                        <td>$125</td>
-                                    </tr>
-                                    <tr>
-                                        <td>3</td>
-                                        <td>
-                                            Airi Satou
-                                        </td>
-                                        <td>25-08-2018</td>
-                                        <td>RTGS</td>
-                                        <td>$287</td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>
-                                            Angelica Ramos
-                                        </td>
-                                        <td>01-05-2018</td>
-                                        <td>CASH</td>
-                                        <td>$170</td>
-                                    </tr>
-                                    <tr>
-                                        <td>5</td>
-                                        <td>
-                                            Ashton Cox
-                                        </td>
-                                        <td>18-04-2018</td>
-                                        <td>NEFT</td>
-                                        <td>$970</td>
-                                    </tr>
-                                    <tr>
-                                        <td>6</td>
-                                        <td>
-                                            John Deo
-                                        </td>
-                                        <td>22-11-2018</td>
-                                        <td>PayPal</td>
-                                        <td>$854</td>
-                                    </tr>
-                                    <tr>
-                                        <td>7</td>
-                                        <td>
-                                            Hasan Basri
-                                        </td>
-                                        <td>07-09-2018</td>
-                                        <td>Cash</td>
-                                        <td>$128</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+
+                        @if ($recentCategories->count() > 0)
+
+                            <div class="table-responsive">
+                                <table class="table table-hover mb-0">
+
+                                    {{-- Table Header --}}
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Category Title</th>
+                                        </tr>
+                                    </thead>
+
+                                    {{-- Table Body --}}
+                                    <tbody>
+
+                                        @foreach ($recentCategories as $category)
+                                            <tr>
+                                                <td>{{ $category->id }}</td>
+                                                <td>{{ $category->title }}</td>
+                                            </tr>
+                                        @endforeach
+
+                                    </tbody>
+                                </table>
+
+                            </div>
+
+                        @else
+
+                            <p>No categories found</p>
+
+                        @endif
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
+
     <div class="settingSidebar">
         <a href="javascript:void(0)" class="settingPanelToggle"> <i class="fa fa-spin fa-cog"></i>
         </a>

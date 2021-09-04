@@ -24,14 +24,23 @@
         <div class="main-wrapper main-wrapper-1">
             <div class="navbar-bg"></div>
             <nav class="navbar navbar-expand-lg main-navbar sticky">
+
                 <div class="form-inline mr-auto">
+
                     <ul class="navbar-nav mr-3">
+
+                        {{-- Burger Bar --}}
                         <li><a href="#" data-toggle="sidebar" class="nav-link nav-link-lg collapse-btn"> <i data-feather="align-justify"></i></a></li>
+
+                        {{-- Maximise --}}
                         <li><a href="#" class="nav-link nav-link-lg fullscreen-btn"><i data-feather="maximize"></i></a></li>
+
+                        {{-- Search --}}
                         <li>
-                            <form class="form-inline mr-auto">
+                            <form class="form-inline mr-auto" action={{ route('admin.posts.search') }} method="POST">
+                                @csrf
                                 <div class="search-element">
-                                    <input class="form-control" type="search" placeholder="Search" aria-label="Search" data-width="200">
+                                    <input class="form-control" name="search" type="search" placeholder="Search Posts" aria-label="Search" data-width="200">
                                     <button class="btn" type="submit">
                                         <i class="fas fa-search"></i>
                                     </button>
@@ -40,20 +49,36 @@
                         </li>
                     </ul>
                 </div>
+
                 <ul class="navbar-nav navbar-right">
+
                     <li class="dropdown">
+
+                        {{-- User Profile Image --}}
                         <a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                             <img alt="image" src="{{ auth()->user()->getGravatarAttribute() }}" class="user-img-radious-style">
                             <span class="d-sm-none d-lg-inline-block"></span>
                         </a>
+
+                        {{-- Drop-Down Content --}}
                         <div class="dropdown-menu dropdown-menu-right pullDown">
+
+                            {{-- User Name --}}
                             <div class="dropdown-title">@if (auth()->check()) {{ auth()->user()->name }} @endif</div>
+
+                            {{-- Profile --}}
                             <a href="{{ route('admin.users.profile') }}" class="dropdown-item has-icon"><i class="far fa-user"></i> Profile
                             <div class="dropdown-divider"></div>
+
+                            {{-- Logout --}}
                             <a href="auth-login.html" class="dropdown-item has-icon text-danger"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
                         </div>
+
                     </li>
+
                 </ul>
+
             </nav>
 
             {{-- Side Bar --}}
